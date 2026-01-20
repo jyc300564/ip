@@ -1,6 +1,7 @@
+package shallowseek;
 import java.util.Scanner;
 
-class Ui {
+public class Ui {
     private Scanner sc;
 
     public Ui() {
@@ -24,13 +25,7 @@ class Ui {
         printSeparateLine();
     }
 
-    public void echo(String input) {
-        System.out.println();
-        System.out.println(input);
-        printSeparateLine();
-    }
-
-    public void showExit(CommandResult result) {
+    public void showResult(CommandResult result) {
         System.out.println();
         System.out.println(result.getMessage());
         printSeparateLine();

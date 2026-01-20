@@ -1,20 +1,11 @@
-# IDEA files
 /.idea/
-/out/
-/*.iml
-
-# Gradle build files
+*.iml
+/target/
+bin/
+*.class
 /.gradle/
 /build/
 src/main/resources/docs/
-
-# MacOS custom attributes files created by Finder
 .DS_Store
-*.iml
-bin/
-
 /text-ui-test/ACTUAL.TXT
 text-ui-test/EXPECTED-UNIX.TXT
-
-# Class files
-*.class
