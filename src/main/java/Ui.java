@@ -1,7 +1,19 @@
+import java.util.Scanner;
+
 class Ui {
+    private Scanner sc;
+
+    public Ui() {
+        this.sc = new Scanner(System.in);
+    }
 
     private void printSeparateLine() {
         System.out.println("----------------------------------------");
+    }
+
+    public String readInput() {
+        System.out.print(">> ");
+        return this.sc.nextLine().trim().toLowerCase();
     }
 
     public void showGreeting() {
@@ -12,7 +24,14 @@ class Ui {
         printSeparateLine();
     }
 
+    public void echo(String input) {
+        System.out.println();
+        System.out.println(input);
+        printSeparateLine();
+    }
+
     public void showExit(CommandResult result) {
+        System.out.println();
         System.out.println(result.getMessage());
         printSeparateLine();
     }

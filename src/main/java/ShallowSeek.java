@@ -4,6 +4,14 @@ public class ShallowSeek {
 
         ui.showGreeting();
 
+        while (true) {
+            String input = ui.readInput();
+            if (input.equals("bye")) {
+                break;
+            }
+            ui.echo(input);
+        }
+
         CommandResult result = new ExitCommand().execute();
         ui.showExit(result);
     }
