@@ -5,15 +5,14 @@ import shallowseek.Context;
 import shallowseek.Task;
 
 public class AddCommand extends Command {
-    private String description;
+    private Task newTask;
 
-    public AddCommand(String description) {
-        this.description = description;
+    public AddCommand(Task taskToAdd) {
+        this.newTask = taskToAdd;
     }
 
     @Override
     public CommandResult execute(Context context) {
-        Task newTask = new Task(this.description);
         context.addTask(newTask);
         return new CommandResult("added: " + newTask.toString());
     }
