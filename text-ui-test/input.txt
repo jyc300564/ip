@@ -1,0 +1,10 @@
+todo read book
+deadline submit report /by 2026-01-30
+event project meeting /from 2026-02-01 14:00 /to 2026-02-01 16:00
+list
+mark 2
+unmark 2
+list
+unknowncommand
+todo
+bye
