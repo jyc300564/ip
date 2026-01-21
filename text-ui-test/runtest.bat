@@ -14,7 +14,8 @@ REM compile all java files recursively into bin
 javac -Xlint:none -d bin ^
  src\main\java\shallowseek\*.java ^
  src\main\java\shallowseek\commands\*.java ^
- src\main\java\shallowseek\tasks\*.java
+ src\main\java\shallowseek\tasks\*.java ^
+ src\main\java\shallowseek\exceptions\*.java
 
 IF ERRORLEVEL 1 (
     echo ********** BUILD FAILURE **********

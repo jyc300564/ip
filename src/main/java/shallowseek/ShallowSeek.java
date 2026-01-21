@@ -1,5 +1,8 @@
 package shallowseek;
 
+import shallowseek.commands.ErrorCommand;
+import shallowseek.exceptions.ShallowSeekException;
+
 public class ShallowSeek {
     private Context context;
     private Ui ui;
@@ -16,7 +19,13 @@ public class ShallowSeek {
 
         while (true) {
             String input = ui.readInput();
-            Command command = parser.parse(input);
+            Command command;
+            try {
+                command = parser.parse(input);
+            } catch (ShallowSeekException e) {
+                command = new ErrorCommand(e.getMessage());
+            } 
+
             CommandResult result = command.execute(context);
             ui.showResult(result);
             if (result.shouldExit()) {

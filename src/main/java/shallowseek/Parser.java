@@ -2,21 +2,20 @@ package shallowseek;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Function;
 
 import shallowseek.commands.AddCommand;
 import shallowseek.commands.EmptyCommand;
-import shallowseek.commands.ErrorCommand;
 import shallowseek.commands.ExitCommand;
 import shallowseek.commands.ListCommand;
 import shallowseek.commands.MarkCommand;
 import shallowseek.commands.UnmarkCommand;
+import shallowseek.exceptions.ShallowSeekException;
 import shallowseek.tasks.Deadline;
 import shallowseek.tasks.Event;
 import shallowseek.tasks.ToDo;
 
 public class Parser {
-    private Map<String, Function<String, Command>> factories;
+    private Map<String, CommandFactory> factories;
 
     public Parser() {
         this.factories = new HashMap<>();
@@ -30,9 +29,9 @@ public class Parser {
         factories.put("event", args -> new AddCommand(this.parseEvent(args)));
     }
 
-    private int parseIndex(String args) {
+    private int parseIndex(String args) throws ShallowSeekException {
         if (args.isEmpty()) {
-            throw new IllegalArgumentException("Index is missing.");
+            throw new ShallowSeekException("Index is missing.");
         }
 
         int index = 0;
@@ -40,29 +39,29 @@ public class Parser {
         try {
             index = Integer.parseInt(args);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("Index must be a number");
+            throw new ShallowSeekException("Index must be a number");
         }
 
         if (index <= 0) {
-            throw new IllegalArgumentException("Index must be greater than 0.");
+            throw new ShallowSeekException("Index must be greater than 0.");
         }
 
         return Integer.parseInt(args) - 1;
     }
 
-    private ToDo parseTodo(String args) {
+    private ToDo parseTodo(String args) throws ShallowSeekException {
         String desc = args.trim();
         if (desc.isEmpty()) {
-            throw new IllegalArgumentException("Task description cannot be empty.");
+            throw new ShallowSeekException("Task description cannot be empty.");
         }
 
         return new ToDo(desc);
     }
 
-    private Deadline parseDeadline(String args) {
+    private Deadline parseDeadline(String args) throws ShallowSeekException {
         String[] parts = args.split("\\s+/by\\s+", 2);
         if (parts.length < 2) {
-            throw new IllegalArgumentException(
+            throw new ShallowSeekException(
                 "Input format is incorrect.\n" +
                 "Deadline Format: deadline <desc> /by <date/time>");
         }
@@ -70,10 +69,10 @@ public class Parser {
         String desc = parts[0].trim();
         String deadline = parts[1].trim();
         if (desc.isEmpty()) {
-            throw new IllegalArgumentException("Task description cannot be empty.");
+            throw new ShallowSeekException("Task description cannot be empty.");
         }
         if (deadline.isEmpty()) {
-            throw new IllegalArgumentException(
+            throw new ShallowSeekException(
                 "This task needs a deadline.\n" +
                 "Deadline Format: deadline <desc> /by <date/time>");
         }
@@ -81,22 +80,22 @@ public class Parser {
         return new Deadline(desc, deadline);
     }
 
-    private Event parseEvent(String args) {
+    private Event parseEvent(String args) throws ShallowSeekException {
         String[] parts = args.split("\\s+/from\\s+", 2);
         if (parts.length < 2) {
-            throw new IllegalArgumentException(
+            throw new ShallowSeekException(
                 "Input format is incorrect.\n" +
                 "Event format: event <desc> /from <start> /to <end>");
         }
 
         String desc = parts[0].trim();
         if (desc.isEmpty()) {
-            throw new IllegalArgumentException("Task description cannot be empty.");
+            throw new ShallowSeekException("Task description cannot be empty.");
         }
 
         String[] timeSpec = parts[1].trim().split("\\s+/to\\s+", 2);
         if (timeSpec.length < 2) {
-            throw new IllegalArgumentException(
+            throw new ShallowSeekException(
                 "This task needs a start time and a end time\n" +
                 "Event format: event <desc> /from <start> /to <end>");
         }
@@ -104,7 +103,7 @@ public class Parser {
         String start = timeSpec[0].trim();
         String end = timeSpec[1].trim();
         if (start.isEmpty() || end.isEmpty()) {
-            throw new IllegalArgumentException(
+            throw new ShallowSeekException(
                 "This task needs a start time and a end time\n" +
                 "Event format: event <desc> /from <start> /to <end>");
         }
@@ -112,7 +111,7 @@ public class Parser {
         return new Event(desc, start, end);
     }
 
-    public Command parse(String input) {
+    public Command parse(String input) throws ShallowSeekException {
         String trimmed = input.trim();
 
         if (trimmed.isEmpty()) {
@@ -123,16 +122,12 @@ public class Parser {
         String commandWord = parts[0];
         String args = parts.length < 2 ? "" : parts[1].trim();
 
-        Function<String, Command> factory = factories.get(commandWord);
+        CommandFactory factory = factories.get(commandWord);
         if (factory == null) {
             String message = "Unknown Command...\nToo deep for me to seek.";
-            return new ErrorCommand(message);
+            throw new ShallowSeekException(message);
         }
 
-        try {
-            return factory.apply(args);
-        } catch (IllegalArgumentException e) {
-            return new ErrorCommand(e.getMessage());
-        }
+        return factory.create(args);
     }
 }
