@@ -3,18 +3,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Context {
-    private List<String> taskList;
+    private List<Task> taskList;
 
     public Context() {
         this.taskList = new ArrayList<>();
     }
 
-    public List<String> getTaskList() {
+    public List<Task> getTaskList() {
         return this.taskList;
     }
 
-    public void addTask(String task) {
+    public int getTaskListSize() {
+        return this.taskList.size();
+    }
+
+    public Task getTaskAt(int index) {
+        return this.taskList.get(index);
+    }
+
+    public void addTask(Task task) {
         this.taskList.add(task);
+    }
+
+    public void markTaskAsDone(int index) {
+        this.taskList.get(index).markAsDone();
+    }
+
+    public void unmarkTaskAsDone(int index) {
+        this.taskList.get(index).unmarkAsDone();
     }
 
     public String taskListToString() {
@@ -25,9 +41,9 @@ public class Context {
         StringBuilder sb = new StringBuilder();
 
         for (int i = 0; i < taskList.size(); i++) {
-            int serialNum = i + 1;
-            sb.append(serialNum).append(". ")
-                .append(this.taskList.get(i)).append("\n");
+            int index = i + 1;
+            sb.append(index).append(".")
+                .append(this.taskList.get(i).toString()).append("\n");
         }
 
         sb.deleteCharAt(sb.length() - 1);
