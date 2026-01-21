@@ -4,13 +4,19 @@ I look for answers, but not too deep.
 What can I do for you?
 ----------------------------------------
 >> 
-added: [T][ ] read book
+Added:
+  [T][ ] read book
+You now have 1 task(s) in the list.
 ----------------------------------------
 >> 
-added: [D][ ] submit report (by: 2026-01-30)
+Added:
+  [D][ ] submit report (by: 2026-01-30)
+You now have 2 task(s) in the list.
 ----------------------------------------
 >> 
-added: [E][ ] project meeting (from: 2026-02-01 14:00 to: 2026-02-01 16:00)
+Added:
+  [E][ ] project meeting (from: 2026-02-01 14:00 to: 2026-02-01 16:00)
+You now have 3 task(s) in the list.
 ----------------------------------------
 >> 
 1.[T][ ] read book
@@ -33,7 +39,16 @@ Task marked as not done:
 3.[E][ ] project meeting (from: 2026-02-01 14:00 to: 2026-02-01 16:00)
 ----------------------------------------
 >> 
-Shallow mistake detected: Unknown Command...
+Deleted:
+  [D][ ] submit report (by: 2026-01-30)
+You now have 2 task(s) in the list.
+----------------------------------------
+>> 
+1.[T][ ] read book
+2.[E][ ] project meeting (from: 2026-02-01 14:00 to: 2026-02-01 16:00)
+----------------------------------------
+>> 
+Shallow mistake detected: Unknown command...
 Too deep for me to seek.
 ----------------------------------------
 >> 

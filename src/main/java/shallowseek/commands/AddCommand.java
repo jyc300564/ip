@@ -14,6 +14,9 @@ public class AddCommand extends Command {
     @Override
     public CommandResult execute(Context context) {
         context.addTask(newTask);
-        return new CommandResult("added: " + newTask.toString());
+        return new CommandResult(
+            "Added:\n  " +
+            newTask.toString() +
+            "\nYou now have " + context.getTaskListSize() + " task(s) in the list.");
     }
 }

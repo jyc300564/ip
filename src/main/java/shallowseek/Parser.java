@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import shallowseek.commands.AddCommand;
+import shallowseek.commands.DeleteCommand;
 import shallowseek.commands.EmptyCommand;
 import shallowseek.commands.ExitCommand;
 import shallowseek.commands.ListCommand;
@@ -24,6 +25,7 @@ public class Parser {
         factories.put("list", args -> new ListCommand());
         factories.put("mark", args -> new MarkCommand(this.parseIndex(args)));
         factories.put("unmark", args -> new UnmarkCommand(this.parseIndex(args)));
+        factories.put("delete", args -> new DeleteCommand(this.parseIndex(args)));
         factories.put("todo", args -> new AddCommand(this.parseTodo(args)));
         factories.put("deadline", args -> new AddCommand(this.parseDeadline(args)));
         factories.put("event", args -> new AddCommand(this.parseEvent(args)));
@@ -39,7 +41,7 @@ public class Parser {
         try {
             index = Integer.parseInt(args);
         } catch (NumberFormatException e) {
-            throw new ShallowSeekException("Index must be a number");
+            throw new ShallowSeekException("Index must be a number.");
         }
 
         if (index <= 0) {
@@ -124,7 +126,7 @@ public class Parser {
 
         CommandFactory factory = factories.get(commandWord);
         if (factory == null) {
-            String message = "Unknown Command...\nToo deep for me to seek.";
+            String message = "Unknown command...\nToo deep for me to seek.";
             throw new ShallowSeekException(message);
         }
 

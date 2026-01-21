@@ -25,6 +25,10 @@ public class Context {
         this.taskList.add(task);
     }
 
+    public Task deleteTask(int index) {
+        return this.taskList.remove(index);
+    }
+
     public void markTaskAsDone(int index) {
         this.taskList.get(index).markAsDone();
     }
