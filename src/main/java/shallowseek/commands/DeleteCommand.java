@@ -5,13 +5,26 @@ import shallowseek.CommandResult;
 import shallowseek.Context;
 import shallowseek.Task;
 
+/**
+ * A command that removes an existing task from the application context based on its index.
+ */
 public class DeleteCommand extends Command {
+    /** The index of the task to be deleted. */
     int index;
 
+    /**
+     * Constructs a DeleteCommand for the task at the given index.
+     * @param index The zero-based index of the task to remove.
+     */
     public DeleteCommand(int index) {
         this.index = index;
     }
 
+    /**
+     * Executes the deletion logic. Includes validation to prevent index out of bounds errors.
+     * @param context The application context containing the task list.
+     * @return A CommandResult indicating either the deleted task details or an error message if the index is invalid.
+     */
     @Override
     public CommandResult execute(Context context) {
         if (index > context.getTaskListSize() - 1) {

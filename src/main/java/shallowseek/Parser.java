@@ -15,9 +15,17 @@ import shallowseek.tasks.Deadline;
 import shallowseek.tasks.Event;
 import shallowseek.tasks.ToDo;
 
+/**
+ * Handles the interpretation of user input strings into executable Command objects.
+ * This class uses a factory pattern mapped to command keywords for modular parsing.
+ */
 public class Parser {
+    /** A map associating command keywords with their respective functional factories. */
     private Map<String, CommandFactory> factories;
 
+    /**
+     * Initializes the parser and populates the command factory map with supported operations.
+     */
     public Parser() {
         this.factories = new HashMap<>();
 
@@ -31,6 +39,12 @@ public class Parser {
         factories.put("event", args -> new AddCommand(this.parseEvent(args)));
     }
 
+    /**
+     * Parses a string argument into a zero-based integer index.
+     * @param args The string input representing a 1-based index.
+     * @return The zero-based integer index.
+     * @throws ShallowSeekException If the index is missing, not a number, or less than 1.
+     */
     private int parseIndex(String args) throws ShallowSeekException {
         if (args.isEmpty()) {
             throw new ShallowSeekException("Index is missing.");
@@ -51,6 +65,12 @@ public class Parser {
         return Integer.parseInt(args) - 1;
     }
 
+    /**
+     * Parses the arguments for a ToDo task.
+     * @param args The description of the task.
+     * @return A new ToDo object.
+     * @throws ShallowSeekException If the description is empty.
+     */
     private ToDo parseTodo(String args) throws ShallowSeekException {
         String desc = args.trim();
         if (desc.isEmpty()) {
@@ -60,6 +80,12 @@ public class Parser {
         return new ToDo(desc);
     }
 
+    /**
+     * Parses the arguments for a Deadline task.
+     * @param args The input string containing description and "/by" delimiter.
+     * @return A new Deadline object.
+     * @throws ShallowSeekException If the format is incorrect or fields are empty.
+     */
     private Deadline parseDeadline(String args) throws ShallowSeekException {
         String[] parts = args.split("\\s+/by\\s+", 2);
         if (parts.length < 2) {
@@ -82,6 +108,12 @@ public class Parser {
         return new Deadline(desc, deadline);
     }
 
+    /**
+     * Parses the arguments for an Event task.
+     * @param args The input string containing description, "/from", and "/to" delimiters.
+     * @return A new Event object.
+     * @throws ShallowSeekException If the format is incorrect or time specifications are missing.
+     */
     private Event parseEvent(String args) throws ShallowSeekException {
         String[] parts = args.split("\\s+/from\\s+", 2);
         if (parts.length < 2) {
@@ -113,6 +145,12 @@ public class Parser {
         return new Event(desc, start, end);
     }
 
+    /**
+     * Processes a full user input line and returns the corresponding Command.
+     * @param input The raw input string from the user.
+     * @return A Command object ready for execution.
+     * @throws ShallowSeekException If the command is unknown or input is invalid.
+     */
     public Command parse(String input) throws ShallowSeekException {
         String trimmed = input.trim();
 
