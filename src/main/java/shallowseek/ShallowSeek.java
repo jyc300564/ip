@@ -1,5 +1,7 @@
 package shallowseek;
 
+import java.io.IOException;
+
 import shallowseek.commands.ErrorCommand;
 import shallowseek.exceptions.ShallowSeekException;
 
@@ -31,6 +33,17 @@ public class ShallowSeek {
     private void run() {
         ui.showGreeting();
 
+        Storage storage = new Storage();
+        try {
+            this.context.setTaskList(storage.load());
+        } catch (ShallowSeekException e) {
+            ui.showLoadError(e);
+            return;
+        } catch (IOException e) {
+            ui.showLoadError(e);
+            return;
+        }
+
         while (true) {
             String input = ui.readInput();
             Command command;
@@ -45,6 +58,12 @@ public class ShallowSeek {
             if (result.shouldExit()) {
                 break;
             }
+        }
+
+        try {
+            storage.save(this.context.getTaskList());
+        } catch (IOException e) {
+            ui.showSaveError(e);
         }
     }
 

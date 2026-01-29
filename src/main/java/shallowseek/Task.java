@@ -22,6 +22,16 @@ public abstract class Task {
     }
 
     /**
+     * Constructs a new Task with the specified description.
+     * @param description The textual description of the task.
+     * @param isDone The completion status of the task.
+     */
+    public Task(String description, boolean isDone) {
+        this.description = description;
+        this.isDone = isDone;
+    }
+
+    /**
      * Gets the description of the task.
      * @return The task description.
      */
@@ -50,6 +60,13 @@ public abstract class Task {
     public void unmarkAsDone() {
         this.isDone = false;
     }
+
+    /**
+     * Converts the task into a specific string format suitable for file storage.
+     * This format should allow the task to be reconstructed when the application restarts.
+     * @return A formatted string representing the task's data for saving.
+     */
+    public abstract String toSaveString();
 
     /**
      * Returns a string representation of the task, including its completion status.

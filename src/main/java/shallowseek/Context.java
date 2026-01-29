@@ -27,6 +27,14 @@ public class Context {
     }
 
     /**
+     * Set the list of tasks using the task list provided.
+     * @param A List of Task objects.
+     */
+    public void setTaskList(List<Task> taskList) {
+        this.taskList = taskList;
+    }
+
+    /**
      * Returns the total number of tasks currently in the list.
      * @return The size of the task list.
      */

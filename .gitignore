@@ -9,3 +9,4 @@ src/main/resources/docs/
 .DS_Store
 /text-ui-test/ACTUAL.TXT
 text-ui-test/EXPECTED-UNIX.TXT
+/data/
