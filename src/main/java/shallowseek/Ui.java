@@ -46,6 +46,30 @@ public class Ui {
     }
 
     /**
+     * Displays an error message to the user when a failure occurs during the loading of a save file.
+     * @param e The Exception caught during the loading process.
+     */
+    public void showLoadError(Exception e) {
+        System.out.print("Deep error detected when loading save file:\n  ");
+        System.out.println(e.getMessage());
+        System.out.println("ShallowSeek will now exit.");
+        System.out.println("Please try to fix or remove the save file in ./data/ and restart.");
+        printSeparateLine();
+    }
+
+    /**
+     * Displays an error message to the user when a failure occurs during the saving of a save file.
+     * @param e The Exception caught during the saving process.
+     */
+    public void showSaveError(Exception e) {
+        System.out.print("Deep error detected when saving save file:\n  ");
+        System.out.println(e.getMessage());
+        System.out.println("ShallowSeek will now exit.");
+        System.out.println("Your progress may not be saved...");
+        printSeparateLine();
+    }
+
+    /**
      * Displays the result of a command execution to the user.
      * @param result The CommandResult object containing the message to be shown.
      */

@@ -21,6 +21,30 @@ public class Deadline extends Task {
     }
 
     /**
+     * Constructs a new Deadline task with a description and a due date.
+     * @param description The textual description of the deadline task.
+     * @param isDone The completion status of the deadline task.
+     * @param deadline The time or date constraint for the task.
+     */
+    public Deadline(String description, boolean isDone, String deadline) {
+        super(description, isDone);
+        this.deadline = deadline;
+    }
+
+    /**
+     * Converts the task into a specific string format suitable for file storage.
+     * This format should allow the task to be reconstructed when the application restarts.
+     * @return A formatted string representing the task's data for saving.
+     */
+    @Override
+    public String toSaveString() {
+        return "D|" +
+            (this.isDone() ? "1" : "0") + "|" +
+            this.getDescription() + "|" +
+            this.deadline;
+    }
+
+    /**
      * Returns a string representation of the deadline task, 
      * including the task type identifier [D] and the deadline info.
      * @return A formatted string representing the deadline task.

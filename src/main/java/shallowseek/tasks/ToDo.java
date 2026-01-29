@@ -16,6 +16,28 @@ public class ToDo extends Task {
         super(description);
     }
 
+
+    /**
+     * Constructs a new ToDo task with the specified description.
+     * @param description The textual description of the task.
+     * @param isDone The completion status of the task.
+     */
+    public ToDo(String description, boolean isDone) {
+        super(description, isDone);
+    }
+
+    /**
+     * Converts the task into a specific string format suitable for file storage.
+     * This format should allow the task to be reconstructed when the application restarts.
+     * @return A formatted string representing the task's data for saving.
+     */
+    @Override
+    public String toSaveString() {
+        return "T|" +
+            (this.isDone() ? "1" : "0") + "|" +
+            this.getDescription();
+    }
+
     /**
      * Returns a string representation of the ToDo task, 
      * prefixed with the type identifier [T].

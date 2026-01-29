@@ -25,6 +25,33 @@ public class Event extends Task {
     }
 
     /**
+     * Constructs a new Event task with start and end time specifications.
+     * @param description The textual description of the event.
+     * @param isDone The completion status of the event.
+     * @param startTime The beginning of the event.
+     * @param endTime The conclusion of the event.
+     */
+    public Event(String description, boolean isDone, String startTime, String endTime) {
+        super(description, isDone);
+        this.startTime = startTime;
+        this.endTime = endTime;
+    }
+
+    /**
+     * Converts the task into a specific string format suitable for file storage.
+     * This format should allow the task to be reconstructed when the application restarts.
+     * @return A formatted string representing the task's data for saving.
+     */
+    @Override
+    public String toSaveString() {
+        return "E|" +
+            (this.isDone() ? "1" : "0") + "|" +
+            this.getDescription() + "|" +
+            this.startTime + "|" +
+            this.endTime;
+    }
+
+    /**
      * Returns a string representation of the event, 
      * including the task type identifier [E] and the time range.
      * @return A formatted string representing the event.
