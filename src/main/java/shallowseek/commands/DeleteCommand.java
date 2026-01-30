@@ -35,9 +35,11 @@ public class DeleteCommand extends Command {
         } else {
             Task deletedTask = context.deleteTask(this.index);
             return new CommandResult(
-                "Deleted:\n  " +
-                deletedTask.toString() +
-                "\nYou now have " + context.getTaskListSize() + " task(s) in the list.");
+                "Deleted:\n  "
+                + deletedTask.toString()
+                + "\nYou now have "
+                + context.getTaskListSize()
+                + " task(s) in the list.");
         }
     }
 }

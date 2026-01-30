@@ -28,8 +28,10 @@ public class AddCommand extends Command {
     public CommandResult execute(TaskList context) {
         context.addTask(newTask);
         return new CommandResult(
-            "Added:\n  " +
-            newTask.toString() +
-            "\nYou now have " + context.getTaskListSize() + " task(s) in the list.");
+            "Added:\n  "
+            + newTask.toString()
+            + "\nYou now have "
+            + context.getTaskListSize()
+            + " task(s) in the list.");
     }
 }
