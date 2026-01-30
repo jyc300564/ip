@@ -11,6 +11,7 @@ import shallowseek.commands.AddCommand;
 import shallowseek.commands.DeleteCommand;
 import shallowseek.commands.EmptyCommand;
 import shallowseek.commands.ExitCommand;
+import shallowseek.commands.FindCommand;
 import shallowseek.commands.ListCommand;
 import shallowseek.commands.MarkCommand;
 import shallowseek.commands.UnmarkCommand;
@@ -41,6 +42,7 @@ public class Parser {
         factories.put("todo", args -> new AddCommand(this.parseTodo(args)));
         factories.put("deadline", args -> new AddCommand(this.parseDeadline(args)));
         factories.put("event", args -> new AddCommand(this.parseEvent(args)));
+        factories.put("find", args -> new FindCommand(args.toLowerCase()));
     }
 
     /**
