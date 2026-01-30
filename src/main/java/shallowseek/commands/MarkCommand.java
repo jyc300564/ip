@@ -28,15 +28,17 @@ public class MarkCommand extends Command {
      */
     public CommandResult execute(TaskList context) {
         if (index > context.getTaskListSize() - 1) {
-            String message = "Exception in thread \"main\" java.lang.IndexOutOfBoundsExcept...\n" +
-            "Except I saw it coming!\n" +
-            "You only have " + context.getTaskListSize() + " task(s) in the task list.";
+            String message = "Exception in thread \"main\" java.lang.IndexOutOfBoundsExcept...\n"
+            + "Except I saw it coming!\n"
+            + "You only have "
+            + context.getTaskListSize()
+            + " task(s) in the task list.";
             return new CommandResult(message);
         } else {
             context.markTaskAsDone(this.index);
-            String message = "Performing shallow seek...\n" +
-                "Task marked as done:\n  " +
-                context.getTaskAt(this.index).toString();
+            String message = "Performing shallow seek...\n"
+                + "Task marked as done:\n  "
+                + context.getTaskAt(this.index).toString();
             return new CommandResult(message);
         }
     }

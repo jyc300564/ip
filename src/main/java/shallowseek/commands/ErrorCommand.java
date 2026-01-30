@@ -26,7 +26,7 @@ public class ErrorCommand extends Command {
      */
     @Override
     public CommandResult execute(TaskList context) {
-        return new CommandResult("Shallow mistake detected: " +
-            this.message);
+        return new CommandResult("Shallow mistake detected: "
+            + this.message);
     }
 }
