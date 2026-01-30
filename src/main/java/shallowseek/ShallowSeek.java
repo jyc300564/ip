@@ -69,7 +69,7 @@ public class ShallowSeek {
 
     /**
      * The main method that launches the ShallowSeek application.
-     * @param args Command line arguments (not used).
+     * @param args Command line arguments.
      */
     public static void main(String[] args) {
         new ShallowSeek().run();
