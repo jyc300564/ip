@@ -44,7 +44,7 @@ public class TaskList {
 
     /**
      * Retrieves a task at a specific position.
-     * * @param index The zero-based index of the task to retrieve.
+     * @param index The zero-based index of the task to retrieve.
      * @return The Task object at the specified index.
      */
     public Task getTaskAt(int index) {

@@ -72,7 +72,7 @@ public class Parser {
     /**
      * Parses a date and time string into a LocalDateTime object using a specific pattern.
      * The expected format is "yyyy-MM-dd HH:mm".
-     * @param dateTime The string containing the date and time information.
+     * @param input The string containing the date and time information.
      * @return A LocalDateTime object representing the parsed date and time.
      * @throws ShallowSeekException If the input format is incorrect.
      */
