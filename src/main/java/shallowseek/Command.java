@@ -22,5 +22,5 @@ public abstract class Command {
      * @param context the current application context containing shared state
      * @return the result of executing this command
      */
-    public abstract CommandResult execute(Context context);
+    public abstract CommandResult execute(TaskList context);
 }

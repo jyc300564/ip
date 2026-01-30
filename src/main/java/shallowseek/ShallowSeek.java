@@ -11,7 +11,7 @@ import shallowseek.exceptions.ShallowSeekException;
  */
 public class ShallowSeek {
     /** The storage and state manager for tasks. */
-    private Context context;
+    private TaskList context;
     /** The user interface handler for input and output. */
     private Ui ui;
     /** The parser used to translate user input into executable commands. */
@@ -21,7 +21,7 @@ public class ShallowSeek {
      * Initializes a new instance of ShallowSeek with its required components.
      */
     public ShallowSeek() {
-        this.context = new Context();
+        this.context = new TaskList();
         this.ui = new Ui();
         this.parser = new Parser();
     }

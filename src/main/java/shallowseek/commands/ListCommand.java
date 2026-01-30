@@ -1,7 +1,7 @@
 package shallowseek.commands;
 import shallowseek.Command;
 import shallowseek.CommandResult;
-import shallowseek.Context;
+import shallowseek.TaskList;
 
 /**
  * Represents a command that displays all current tasks in the list.
@@ -13,7 +13,7 @@ public class ListCommand extends Command {
      * @return A CommandResult containing the string representation of all tasks.
      */
     @Override
-    public CommandResult execute(Context context) {
+    public CommandResult execute(TaskList context) {
         return new CommandResult(context.taskListToString());
     }
 }

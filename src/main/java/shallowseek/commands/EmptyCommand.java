@@ -2,7 +2,7 @@ package shallowseek.commands;
 
 import shallowseek.Command;
 import shallowseek.CommandResult;
-import shallowseek.Context;
+import shallowseek.TaskList;
 
 /**
  * Represents a command executed when the user provides empty or whitespace-only input.
@@ -14,7 +14,7 @@ public class EmptyCommand extends Command {
      * @return A CommandResult containing a simple ellipsis.
      */
     @Override
-    public CommandResult execute(Context context) {
+    public CommandResult execute(TaskList context) {
         return new CommandResult("...");
     }
 }

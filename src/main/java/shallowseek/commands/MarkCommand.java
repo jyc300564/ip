@@ -2,7 +2,7 @@ package shallowseek.commands;
 
 import shallowseek.Command;
 import shallowseek.CommandResult;
-import shallowseek.Context;
+import shallowseek.TaskList;
 
 /**
  * A command that marks a specific task in the list as completed.
@@ -26,7 +26,7 @@ public class MarkCommand extends Command {
      * @param context The application context containing the task list.
      * @return A CommandResult containing a success message or an error if the index is out of bounds.
      */
-    public CommandResult execute(Context context) {
+    public CommandResult execute(TaskList context) {
         if (index > context.getTaskListSize() - 1) {
             String message = "Exception in thread \"main\" java.lang.IndexOutOfBoundsExcept...\n" +
             "Except I saw it coming!\n" +

@@ -7,14 +7,14 @@ import java.util.List;
  * Represents the execution context of the ShallowSeek application.
  * This class manages the storage, retrieval, and state manipulation of tasks.
  */
-public class Context {
+public class TaskList {
     /** The list containing all tasks in the current context. */
     private List<Task> taskList;
 
     /**
      * Initializes a new Context with an empty task list.
      */
-    public Context() {
+    public TaskList() {
         this.taskList = new ArrayList<>();
     }
 

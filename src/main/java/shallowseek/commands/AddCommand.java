@@ -1,7 +1,7 @@
 package shallowseek.commands;
 import shallowseek.Command;
 import shallowseek.CommandResult;
-import shallowseek.Context;
+import shallowseek.TaskList;
 import shallowseek.Task;
 
 /**
@@ -25,7 +25,7 @@ public class AddCommand extends Command {
      * @return A CommandResult containing the success message and updated list size.
      */
     @Override
-    public CommandResult execute(Context context) {
+    public CommandResult execute(TaskList context) {
         context.addTask(newTask);
         return new CommandResult(
             "Added:\n  " +

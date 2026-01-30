@@ -2,7 +2,7 @@ package shallowseek.commands;
 
 import shallowseek.Command;
 import shallowseek.CommandResult;
-import shallowseek.Context;
+import shallowseek.TaskList;
 
 /**
  * Represents a command that is created when an error occurs during parsing or execution.
@@ -25,7 +25,7 @@ public class ErrorCommand extends Command {
      * @return A CommandResult containing the formatted error message.
      */
     @Override
-    public CommandResult execute(Context context) {
+    public CommandResult execute(TaskList context) {
         return new CommandResult("Shallow mistake detected: " +
             this.message);
     }
