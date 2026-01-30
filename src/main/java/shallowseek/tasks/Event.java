@@ -1,5 +1,8 @@
 package shallowseek.tasks;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import shallowseek.Task;
 
 /**
@@ -7,10 +10,13 @@ import shallowseek.Task;
  * It stores a start time and an end time in addition to the task description.
  */
 public class Event extends Task {
+    /** The display format of deadline time */
+    private static final DateTimeFormatter DISPLAY_FMT =
+        DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
     /** The starting time or date of the event. */
-    String startTime;
+    LocalDateTime startTime;
     /** The ending time or date of the event. */
-    String endTime;
+    LocalDateTime endTime;
 
     /**
      * Constructs a new Event task with start and end time specifications.
@@ -18,7 +24,7 @@ public class Event extends Task {
      * @param startTime The beginning of the event.
      * @param endTime The conclusion of the event.
      */
-    public Event(String description, String startTime, String endTime) {
+    public Event(String description, LocalDateTime startTime, LocalDateTime endTime) {
         super(description);
         this.startTime = startTime;
         this.endTime = endTime;
@@ -31,7 +37,7 @@ public class Event extends Task {
      * @param startTime The beginning of the event.
      * @param endTime The conclusion of the event.
      */
-    public Event(String description, boolean isDone, String startTime, String endTime) {
+    public Event(String description, boolean isDone, LocalDateTime startTime, LocalDateTime endTime) {
         super(description, isDone);
         this.startTime = startTime;
         this.endTime = endTime;
@@ -47,8 +53,8 @@ public class Event extends Task {
         return "E|" +
             (this.isDone() ? "1" : "0") + "|" +
             this.getDescription() + "|" +
-            this.startTime + "|" +
-            this.endTime;
+            this.startTime.format(DISPLAY_FMT) + "|" +
+            this.endTime.format(DISPLAY_FMT);
     }
 
     /**
@@ -59,6 +65,9 @@ public class Event extends Task {
     @Override
     public String toString() {
         return "[E]" + super.toString() +
-            String.format(" (from: %s to: %s)", this.startTime, this.endTime);
+            String.format(" (from: %s to: %s)",
+                this.startTime.format(DISPLAY_FMT),
+                this.endTime.format(DISPLAY_FMT)
+            );
     }
 }

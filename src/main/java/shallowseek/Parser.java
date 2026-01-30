@@ -1,5 +1,9 @@
 package shallowseek;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -66,6 +70,31 @@ public class Parser {
     }
 
     /**
+     * Parses a date and time string into a LocalDateTime object using a specific pattern.
+     * The expected format is "yyyy-MM-dd HH:mm".
+     * @param dateTime The string containing the date and time information.
+     * @return A LocalDateTime object representing the parsed date and time.
+     * @throws ShallowSeekException If the input format is incorrect.
+     */
+    private LocalDateTime parseDate(String input) throws ShallowSeekException {
+        try {
+            if (input.matches("\\d{4}-\\d{2}-\\d{2}$")) {
+                DateTimeFormatter fmt =
+                    DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                LocalDate date = LocalDate.parse(input, fmt);
+                return date.plusDays(1).atStartOfDay();
+            } else {
+                DateTimeFormatter fmt =
+                    DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                return LocalDateTime.parse(input, fmt);
+            }
+        } catch (DateTimeParseException e) {
+            throw new ShallowSeekException(
+                "Invalid date format. Use yyyy-MM-dd or yyyy-MM-dd HH:mm.");
+        }
+    }
+
+    /**
      * Parses the arguments for a ToDo task.
      * @param args The description of the task.
      * @return A new ToDo object.
@@ -105,7 +134,7 @@ public class Parser {
                 "Deadline Format: deadline <desc> /by <date/time>");
         }
 
-        return new Deadline(desc, deadline);
+        return new Deadline(desc, this.parseDate(deadline));
     }
 
     /**
@@ -142,7 +171,7 @@ public class Parser {
                 "Event format: event <desc> /from <start> /to <end>");
         }
 
-        return new Event(desc, start, end);
+        return new Event(desc, this.parseDate(start), this.parseDate(end));
     }
 
     /**
