@@ -1,5 +1,8 @@
 package shallowseek.tasks;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import shallowseek.Task;
 
 /**
@@ -7,15 +10,19 @@ import shallowseek.Task;
  * It extends the base Task class by adding a deadline time string.
  */
 public class Deadline extends Task {
+
+    /** The display format of deadline time */
+    private static final DateTimeFormatter DISPLAY_FMT =
+        DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
     /** The date or time by which the task must be completed. */
-    private String deadline;
+    private LocalDateTime deadline;
 
     /**
      * Constructs a new Deadline task with a description and a due date.
      * @param description The textual description of the deadline task.
      * @param deadline The time or date constraint for the task.
      */
-    public Deadline(String description, String deadline) {
+    public Deadline(String description, LocalDateTime deadline) {
         super(description);
         this.deadline = deadline;
     }
@@ -26,7 +33,7 @@ public class Deadline extends Task {
      * @param isDone The completion status of the deadline task.
      * @param deadline The time or date constraint for the task.
      */
-    public Deadline(String description, boolean isDone, String deadline) {
+    public Deadline(String description, boolean isDone, LocalDateTime deadline) {
         super(description, isDone);
         this.deadline = deadline;
     }
@@ -41,7 +48,7 @@ public class Deadline extends Task {
         return "D|" +
             (this.isDone() ? "1" : "0") + "|" +
             this.getDescription() + "|" +
-            this.deadline;
+            this.deadline.format(DISPLAY_FMT);
     }
 
     /**
@@ -51,6 +58,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + this.deadline + ")";
+        return "[D]" + super.toString()
+            + " (by: " + this.deadline.format(DISPLAY_FMT) + ")";
     }
 }
