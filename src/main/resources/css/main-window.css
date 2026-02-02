@@ -1,0 +1,106 @@
+.root {
+    -fx-background-color: #F9FBFF;
+}
+
+.input-box-wrapper {
+    -fx-background-color: white;
+    -fx-border-color: #E5E7EB;
+    -fx-border-radius: 24;
+    -fx-background-radius: 24;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 10, 0, 0, 5);
+}
+
+.modern-text-field {
+    -fx-background-color: transparent;
+    -fx-prompt-text-fill: #9CA3AF;
+    -fx-font-size: 15px;
+    -fx-padding: 5 0 5 0;
+}
+.modern-text-field:focused {
+    -fx-background-color: transparent;
+}
+
+.deepthink-toggle {
+    -fx-background-color: transparent;
+    -fx-text-fill: #1F2937;
+    -fx-border-color: #E5E7EB;
+    -fx-border-radius: 20;
+    -fx-background-radius: 20;
+    -fx-font-size: 13px;
+    -fx-padding: 6 14 6 14;
+    -fx-cursor: hand;
+    -fx-transition: all 0.2s;
+}
+
+.deepthink-toggle:hover {
+    -fx-background-color: #F9FAFB;
+}
+
+.deepthink-toggle:selected {
+    -fx-background-color: #EFF6FF;
+    -fx-text-fill: #4D6BFE;
+    -fx-border-color: #DBEAFE;
+}
+
+.send-button {
+    -fx-background-color: #4D6BFE;
+    -fx-text-fill: white;
+    -fx-background-radius: 50;
+    -fx-min-width: 32;
+    -fx-min-height: 32;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+.send-button:hover {
+    -fx-background-color: #3B56D1;
+}
+
+.list-view {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+.list-cell {
+    -fx-background-color: transparent;
+    -fx-padding: 10;
+}
+
+.top-nav-bar {
+    -fx-background-color: rgba(255, 255, 255, 0.8);
+    -fx-border-color: transparent transparent #E5E7EB transparent;
+    -fx-border-width: 0 0 1 0;
+}
+
+.top-title-label {
+    -fx-text-fill: #4D6BFE;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
+    
+    -fx-graphic-text-gap: 10px;
+}
+
+.logo-wrapper {
+    -fx-padding: 6 16 6 12;
+    -fx-background-color: white;
+    -fx-background-radius: 14;
+    -fx-border-color: #E5E7EB;
+    -fx-border-radius: 14;
+    -fx-border-width: 1;
+}
+
+.list-view .scroll-bar:vertical .track,
+.list-view .scroll-bar:horizontal .track {
+    -fx-background-color: white;
+}
+
+.list-view .scroll-bar:vertical .increment-button,
+.list-view .scroll-bar:vertical .decrement-button {
+    -fx-background-color: white;
+    -fx-shape: "";
+}
+
+.list-view .scroll-bar:vertical .thumb {
+    -fx-background-color: rgba(0,0,0,0.1);
+    -fx-background-radius: 10;
+}

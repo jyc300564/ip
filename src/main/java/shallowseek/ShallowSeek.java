@@ -16,6 +16,8 @@ public class ShallowSeek {
     private Ui ui;
     /** The parser used to translate user input into executable commands. */
     private Parser parser;
+    /** The persisten storage for the task list. */
+    private Storage storage;
 
     /**
      * Initializes a new instance of ShallowSeek with its required components.
@@ -24,54 +26,50 @@ public class ShallowSeek {
         this.context = new TaskList();
         this.ui = new Ui();
         this.parser = new Parser();
+        this.storage = new Storage();
+
+        this.loadTaskList();
     }
 
     /**
-     * Starts the main program loop, handling the input-parse-execute cycle.
-     * The loop continues until an exit command is issued by the user.
+     * Load the task list from persistent memory.
      */
-    private void run() {
-        ui.showGreeting();
-
-        Storage storage = new Storage();
+    public void loadTaskList() {
         try {
-            this.context.setTaskList(storage.load());
+            this.context.setTaskList(this.storage.load());
         } catch (ShallowSeekException e) {
-            ui.showLoadError(e);
+            this.ui.showLoadError(e);
             return;
         } catch (IOException e) {
-            ui.showLoadError(e);
+            this.ui.showLoadError(e);
             return;
-        }
-
-        while (true) {
-            String input = ui.readInput();
-            Command command;
-            try {
-                command = parser.parse(input);
-            } catch (ShallowSeekException e) {
-                command = new ErrorCommand(e.getMessage());
-            } 
-
-            CommandResult result = command.execute(context);
-            ui.showResult(result);
-            if (result.shouldExit()) {
-                break;
-            }
-        }
-
-        try {
-            storage.save(this.context.getTaskList());
-        } catch (IOException e) {
-            ui.showSaveError(e);
         }
     }
 
     /**
-     * The main method that launches the ShallowSeek application.
-     * @param args Command line arguments.
+     * Store the task list into persistent memory.
      */
-    public static void main(String[] args) {
-        new ShallowSeek().run();
+    public void storeTaskList() {
+        try {
+            this.storage.save(this.context.getTaskList());
+        } catch (IOException e) {
+            this.ui.showSaveError(e);
+        }
+    }
+
+    /**
+     * Get the result of a user command.
+     * @param input from user
+     * @return the result of corresponding command, a ErrorCommand in case of exceptions
+     */
+    public CommandResult getResponse(String input) {
+        Command command;
+        try {
+            command = this.parser.parse(input);
+        } catch (ShallowSeekException e) {
+            command = new ErrorCommand(e.getMessage());
+        } 
+
+        return command.execute(context);
     }
 }
