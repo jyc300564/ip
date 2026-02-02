@@ -1,0 +1,24 @@
+.chat-bubble {
+    -fx-padding: 10 16 10 16;
+    -fx-font-size: 14px;
+    -fx-line-spacing: 5px;
+    -fx-max-width: 450px;
+}
+
+.user-container .chat-bubble {
+    -fx-background-color: #D1DBFF;
+    -fx-text-fill: #111827;
+    -fx-background-radius: 18 2 18 18;
+}
+
+.shallowseek-container .chat-bubble {
+    -fx-background-color: #F3F4F6;
+    -fx-text-fill: #111827;
+    -fx-background-radius: 2 18 18 18;
+    -fx-border-color: #E5E7EB;
+    -fx-border-radius: 2 18 18 18;
+}
+
+.display-picture {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);
+}

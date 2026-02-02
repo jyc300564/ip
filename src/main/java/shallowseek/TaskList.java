@@ -98,7 +98,7 @@ public class TaskList {
 
         for (int i = 0; i < taskList.size(); i++) {
             int index = i + 1;
-            sb.append(index).append(".")
+            sb.append(index).append(". ")
                 .append(this.taskList.get(i).toString()).append("\n");
         }
 

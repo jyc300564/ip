@@ -12,6 +12,11 @@ public class FindCommand extends Command {
         this.keyword = keyword;
     }
 
+    /**
+     * Iterate throught the task list to find tasks with description containing provided keyword.
+     * @param the task list
+     * @return a CommandResult item containing string representation of matching tasks
+     */
     @Override
     public CommandResult execute(TaskList context) {
         StringBuilder sb = new StringBuilder();

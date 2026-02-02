@@ -25,10 +25,24 @@ public class MainWindow extends BorderPane {
     private Image shallowSeekImage = new Image(
         this.getClass().getResourceAsStream("/images/ShallowSeek.png"));
 
+    /**
+     * Inject the ShallowSeek instance.
+     * @param a ShallowSeek instance.
+     */
     public void setShallowSeek(ShallowSeek shallowSeek) {
         this.shallowSeek = shallowSeek;
+        String welcomeMsg = "Hello! I'm ShallowSeek.\n"
+            + "I look for answers, but not too deep.\n"
+            + "What can I do for you?";
+        this.messageList.getItems().add(
+            DialogBox.getShallowSeekDialog(welcomeMsg, this.shallowSeekImage));
     }
 
+    /**
+     * Act depend on the command's result from the user.
+     * Exit the application if the user triggered a ExitCommand.
+     * Otherwise, add the result of the command into the message list area.
+     */
     @FXML
     public void handleUserInput() {
         String input = userInput.getText();
