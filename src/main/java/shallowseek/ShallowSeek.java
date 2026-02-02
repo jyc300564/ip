@@ -31,6 +31,9 @@ public class ShallowSeek {
         this.loadTaskList();
     }
 
+    /**
+     * Load the task list from persistent memory.
+     */
     public void loadTaskList() {
         try {
             this.context.setTaskList(this.storage.load());
@@ -43,6 +46,9 @@ public class ShallowSeek {
         }
     }
 
+    /**
+     * Store the task list into persistent memory.
+     */
     public void storeTaskList() {
         try {
             this.storage.save(this.context.getTaskList());
@@ -51,6 +57,11 @@ public class ShallowSeek {
         }
     }
 
+    /**
+     * Get the result of a user command.
+     * @param input from user
+     * @return the result of corresponding command, a ErrorCommand in case of exceptions
+     */
     public CommandResult getResponse(String input) {
         Command command;
         try {

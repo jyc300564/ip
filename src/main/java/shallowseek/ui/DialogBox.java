@@ -48,12 +48,27 @@ public class DialogBox extends HBox {
         setAlignment(Pos.TOP_LEFT);
     }
 
+    /**
+     * Generate a user's dialog box.
+     * @param text message of user
+     * @param img image of user
+     * @return a user's dialog box
+     */
     public static DialogBox getUserDialog(String text, Image img) {
-        return new DialogBox(text, img);
+        DialogBox db = new DialogBox(text, img);
+        db.getStyleClass().add("user-container");
+        return db;
     }
 
+    /**
+     * Generate a bot's dialog box.
+     * @param text reply message of bot
+     * @param img image of bot
+     * @return a bot's dialog box
+     */
     public static DialogBox getShallowSeekDialog(String text, Image img) {
-        var db = new DialogBox(text, img);
+        DialogBox db = new DialogBox(text, img);
+        db.getStyleClass().add("shallowseek-container");
         db.flip();
         return db;
     }
