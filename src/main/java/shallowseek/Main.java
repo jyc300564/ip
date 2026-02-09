@@ -1,6 +1,7 @@
 package shallowseek;
 
 import java.io.IOException;
+import java.net.URL;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -33,7 +34,9 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
+            URL fxmlUrl = Main.class.getResource("/view/MainWindow.fxml");
+            assert fxmlUrl != null : "FXML resource not found: /view/MainWindow.fxml";
+            FXMLLoader fxmlLoader = new FXMLLoader(fxmlUrl);
             BorderPane bp = fxmlLoader.load();
             Scene scene = new Scene(bp);
             stage.setScene(scene);

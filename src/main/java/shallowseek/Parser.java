@@ -199,6 +199,8 @@ public class Parser {
             throw new ShallowSeekException(message);
         }
 
-        return factory.create(args);
+        Command command =  factory.create(args);
+        assert command != null : "CommandFactory returned null Command";
+        return command;
     }
 }
