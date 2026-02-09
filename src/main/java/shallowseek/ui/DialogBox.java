@@ -1,6 +1,7 @@
 package shallowseek.ui;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.Collections;
 
 import javafx.collections.FXCollections;
@@ -26,7 +27,9 @@ public class DialogBox extends HBox {
 
     private DialogBox(String text, Image img) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
+            URL fxmlUrl = MainWindow.class.getResource("/view/DialogBox.fxml");
+            assert fxmlUrl != null : "FXML resource not found: /view/DialogBox.fxml";
+            FXMLLoader fxmlLoader = new FXMLLoader(fxmlUrl);
             fxmlLoader.setController(this);
             fxmlLoader.setRoot(this);
             fxmlLoader.load();
