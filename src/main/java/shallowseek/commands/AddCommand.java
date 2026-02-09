@@ -21,11 +21,16 @@ public class AddCommand extends Command {
 
     /**
      * Executes the addition of the task and returns a confirmation result.
+     * Rejects the addition if the task already exists in the list
      * @param context The application context where the task will be saved.
      * @return A CommandResult containing the success message and updated list size.
      */
     @Override
     public CommandResult execute(TaskList context) {
+        if (context.contains(this.newTask)) {
+            return new CommandResult("Duplicate task detected...\nTask already exists in the list.");
+        }
+
         context.addTask(newTask);
         return new CommandResult(
             "Added:\n  "

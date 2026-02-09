@@ -85,6 +85,22 @@ public class TaskList {
     }
 
     /**
+     * Returns whether the task list already contains a task equal to the given task.
+     *
+     * @param task the task to check for duplication
+     * @return true if an equal task already exists in the list
+     */
+    public boolean contains(Task task) {
+        for (Task t : this.taskList) {
+            if (t.equals(task)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
      * Generates a formatted string representation of the task list.
      * If the list is empty, returns a specific message indicating no tasks were found.
      * @return A numbered string listing all tasks, or an empty-state message.
