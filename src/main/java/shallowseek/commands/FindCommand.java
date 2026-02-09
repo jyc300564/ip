@@ -1,5 +1,7 @@
 package shallowseek.commands;
 
+import java.util.List;
+
 import shallowseek.Command;
 import shallowseek.CommandResult;
 import shallowseek.Task;
@@ -19,27 +21,30 @@ public class FindCommand extends Command {
      */
     @Override
     public CommandResult execute(TaskList context) {
-        StringBuilder sb = new StringBuilder();
-        int count = 1;
-        for (Task task : context.getTaskList()) {
-            if (task.getDescription().toLowerCase().contains(this.keyword)) {
-                sb.append("  ");
-                sb.append(count + ". ");
-                sb.append(task.toString());
-                sb.append("\n");
-                count++;
-            }
+        List<String> matches = context.getTaskList().stream()
+            .filter(task -> task.getDescription().toLowerCase().contains(this.keyword))
+            .map(Task::toString)
+            .toList();
+
+        if (matches.isEmpty()) {
+            String message = "Performing shallow seek...\n"
+            + "No matching tasks found.";
+            return new CommandResult(message);
         }
 
-        if (sb.isEmpty()) {
-            String message = "Performing shallow seek...\n"
-                + "No matching tasks found.";
-            return new CommandResult(message);
-        } else {
-            String message = "Performing shallow seek...\n"
-                + "Matching tasks found:\n"
-                + sb.toString();
-            return new CommandResult(message);
+        StringBuilder sb = new StringBuilder();
+        int count = 1;
+        for (String taskStr : matches) {
+            sb.append("  ")
+                .append(count++)
+                .append(". ")
+                .append(taskStr)
+                .append("\n");
         }
+
+        String message = "Performing shallow seek...\n"
+            + "Matching tasks found:\n"
+            + sb.toString();
+        return new CommandResult(message);
     }
 }
