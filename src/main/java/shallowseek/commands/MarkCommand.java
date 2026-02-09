@@ -10,7 +10,7 @@ import shallowseek.TaskList;
  */
 public class MarkCommand extends Command {
     /** The index of the task to be marked as done. */
-    int index;
+    private int index;
 
     /**
      * Constructs a MarkCommand with the specified task index.

@@ -182,7 +182,7 @@ public class Parser {
      * @return A Command object ready for execution.
      * @throws ShallowSeekException If the command is unknown or input is invalid.
      */
-    public Command parse(String input) throws ShallowSeekException {
+    public Command parseInput(String input) throws ShallowSeekException {
         String trimmed = input.trim();
 
         if (trimmed.isEmpty()) {
