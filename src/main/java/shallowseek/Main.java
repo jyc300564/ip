@@ -33,7 +33,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/Mainwindow.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
             BorderPane bp = fxmlLoader.load();
             Scene scene = new Scene(bp);
             stage.setScene(scene);
