@@ -65,7 +65,7 @@ public class ShallowSeek {
     public CommandResult getResponse(String input) {
         Command command;
         try {
-            command = this.parser.parse(input);
+            command = this.parser.parseInput(input);
         } catch (ShallowSeekException e) {
             command = new ErrorCommand(e.getMessage());
         } 
