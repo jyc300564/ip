@@ -10,7 +10,7 @@ import shallowseek.TaskList;
  */
 public class UnmarkCommand extends Command {
     /** The index of the task to be unmarked. */
-    int index;
+    private int index;
 
     /**
      * Constructs an UnmarkCommand with the specified task index.

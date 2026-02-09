@@ -10,7 +10,7 @@ import shallowseek.Task;
  */
 public class DeleteCommand extends Command {
     /** The index of the task to be deleted. */
-    int index;
+    private int index;
 
     /**
      * Constructs a DeleteCommand for the task at the given index.

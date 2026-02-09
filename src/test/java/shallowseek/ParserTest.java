@@ -11,12 +11,12 @@ public class ParserTest {
     @Test
     void parse_emptyInput_returnsEmptyCommand() throws Exception {
         Parser parser = new Parser();
-        assertTrue(parser.parse("   ") instanceof EmptyCommand);
+        assertTrue(parser.parseInput("   ") instanceof EmptyCommand);
     }
 
     @Test
     void parse_unknownCommand_throwsShallowSeekException() {
         Parser parser = new Parser();
-        assertThrows(ShallowSeekException.class, () -> parser.parse("DLE"));
+        assertThrows(ShallowSeekException.class, () -> parser.parseInput("DLE"));
     }
 }
