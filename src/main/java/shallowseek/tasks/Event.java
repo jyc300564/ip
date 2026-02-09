@@ -57,6 +57,31 @@ public class Event extends Task {
             this.endTime.format(DISPLAY_FMT);
     }
 
+
+    /**
+     * Compares this task with another object for equality.
+     * Two tasks are considered equal if they represent the same task content,
+     * regardless of their completion status.
+     *
+     * @param obj the object to compare with
+     * @return true if the given object represents the same task
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+
+        if (!(obj instanceof Event)) {
+            return false;
+        }
+
+        Event other = (Event) obj;
+        return this.getDescription().equals(other.getDescription())
+            && this.startTime.equals(other.startTime)
+            && this.endTime.equals(other.endTime);
+    }
+
     /**
      * Returns a string representation of the event, 
      * including the task type identifier [E] and the time range.

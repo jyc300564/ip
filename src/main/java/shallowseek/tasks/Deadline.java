@@ -52,6 +52,29 @@ public class Deadline extends Task {
     }
 
     /**
+     * Compares this task with another object for equality.
+     * Two tasks are considered equal if they represent the same task content,
+     * regardless of their completion status.
+     *
+     * @param obj the object to compare with
+     * @return true if the given object represents the same task
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+
+        if (!(obj instanceof Deadline)) {
+            return false;
+        }
+
+        Deadline other = (Deadline) obj;
+        return this.getDescription().equals(other.getDescription())
+            && this.deadline.equals(other.deadline);
+    }
+
+    /**
      * Returns a string representation of the deadline task, 
      * including the task type identifier [D] and the deadline info.
      * @return A formatted string representing the deadline task.
@@ -61,4 +84,5 @@ public class Deadline extends Task {
         return "[D]" + super.toString()
             + " (by: " + this.deadline.format(DISPLAY_FMT) + ")";
     }
+
 }
