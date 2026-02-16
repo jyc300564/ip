@@ -23,7 +23,7 @@ Upon launch, ShallowSeek will display a greeting message and load previously sav
 
 if no `data` folder or saved file exists, they will be created automantically.
 
---
+---
 
 ## 📋 Features
 
