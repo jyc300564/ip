@@ -32,7 +32,7 @@ public class ShallowSeek {
     }
 
     /**
-     * Load the task list from persistent memory.
+     * Loads the task list from persistent memory.
      */
     public void loadTaskList() {
         try {
@@ -47,7 +47,7 @@ public class ShallowSeek {
     }
 
     /**
-     * Store the task list into persistent memory.
+     * Stores the task list into persistent memory.
      */
     public void storeTaskList() {
         try {
@@ -58,7 +58,7 @@ public class ShallowSeek {
     }
 
     /**
-     * Get the result of a user command.
+     * Gets the result of a user command.
      * @param input from user
      * @return the result of corresponding command, a ErrorCommand in case of exceptions
      */

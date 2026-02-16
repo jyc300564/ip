@@ -27,8 +27,8 @@ public class TaskList {
     }
 
     /**
-     * Set the list of tasks using the task list provided.
-     * @param A List of Task objects.
+     * Sets the list of tasks using the task list provided.
+     * @param taskList A List of Task objects.
      */
     public void setTaskList(List<Task> taskList) {
         this.taskList = taskList;
